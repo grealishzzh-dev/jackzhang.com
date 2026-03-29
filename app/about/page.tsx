@@ -19,8 +19,8 @@ export default function AboutPage() {
       <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
         <Section title="背景">
           <p>
-            复旦大学本科在读，专注二级市场投资研究。目前正在寻找
-            权益投研相关的实习或工作机会，长期目标是成为基金经理。
+            本科复旦大学，硕士曼彻斯特大学，金融学。专注二级市场投资研究，
+            长期目标是成为基金经理，管理一支基金。目前正在寻找权益投研相关的实习或工作机会。
           </p>
         </Section>
 
@@ -43,10 +43,10 @@ export default function AboutPage() {
           <p>
             如果你对我的研究有兴趣，或者有实习/工作机会，欢迎联系：
             <br />
-            <a href="mailto:jack@jackzhang.com" style={{
+            <a href="mailto:grealish11@163.com" style={{
               color: "var(--accent)", textDecoration: "none",
             }}>
-              jack@jackzhang.com
+              grealish11@163.com
             </a>
           </p>
         </Section>
