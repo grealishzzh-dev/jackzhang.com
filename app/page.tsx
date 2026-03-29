@@ -1,65 +1,110 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getAllPosts } from "@/lib/posts";
 
-export default function Home() {
+export default function HomePage() {
+  const posts = getAllPosts().slice(0, 3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div style={{ maxWidth: 900, margin: "0 auto", padding: "72px 32px 96px" }}>
+      {/* Hero */}
+      <div style={{ marginBottom: 72 }}>
+        <p style={{
+          fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.1em",
+          textTransform: "uppercase", color: "var(--accent)", marginBottom: 16,
+        }}>
+          投研笔记
+        </p>
+        <h1 style={{
+          fontSize: "2.6rem", fontWeight: 700, letterSpacing: "-0.04em",
+          lineHeight: 1.15, color: "var(--text)", margin: "0 0 20px",
+        }}>
+          Jack Zhang
+        </h1>
+        <p style={{
+          fontSize: "1.05rem", color: "var(--text-muted)", lineHeight: 1.7,
+          maxWidth: 520, margin: 0,
+        }}>
+          二级市场研究 · 公开记录投资思考与行业分析
+        </p>
+        <div style={{ display: "flex", gap: 12, marginTop: 28 }}>
+          <Link href="/research" style={{
+            display: "inline-flex", alignItems: "center",
+            padding: "9px 22px", borderRadius: 10,
+            background: "var(--accent)", color: "#0f0f0f",
+            fontWeight: 600, fontSize: "0.88rem", textDecoration: "none",
+          }}>
+            查看研究
+          </Link>
+          <Link href="/about" style={{
+            display: "inline-flex", alignItems: "center",
+            padding: "9px 22px", borderRadius: 10,
+            border: "1px solid var(--border)",
+            color: "var(--text-muted)", fontWeight: 500,
+            fontSize: "0.88rem", textDecoration: "none",
+          }}>
+            关于我
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+
+      {/* 最新研究 */}
+      {posts.length > 0 && (
+        <div>
+          <div style={{
+            fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em",
+            textTransform: "uppercase", color: "var(--text-faint)", marginBottom: 20,
+          }}>
+            最新研究
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {posts.map((post) => (
+              <Link key={post.slug} href={`/research/${post.slug}`} style={{
+                display: "flex", alignItems: "baseline",
+                justifyContent: "space-between",
+                padding: "14px 0", borderBottom: "1px solid var(--border)",
+                textDecoration: "none", gap: 16,
+              }}>
+                <span style={{
+                  fontSize: "0.95rem", color: "var(--text)",
+                  fontWeight: 500, letterSpacing: "-0.01em",
+                }}>
+                  {post.title}
+                </span>
+                <span style={{
+                  fontSize: "0.78rem", color: "var(--text-faint)",
+                  whiteSpace: "nowrap", flexShrink: 0,
+                }}>
+                  {post.date}
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div style={{ marginTop: 20 }}>
+            <Link href="/research" style={{
+              fontSize: "0.83rem", color: "var(--accent)", textDecoration: "none",
+            }}>
+              全部研究 →
+            </Link>
+          </div>
         </div>
-      </main>
+      )}
+
+      {/* 方法论 */}
+      <div style={{
+        marginTop: 80, padding: "28px 32px", borderRadius: 14,
+        border: "1px solid var(--accent-border)", background: "var(--accent-dim)",
+      }}>
+        <p style={{
+          fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em",
+          textTransform: "uppercase", color: "var(--accent)", marginBottom: 10,
+        }}>
+          方法论
+        </p>
+        <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", lineHeight: 1.7, margin: 0 }}>
+          每一篇研究都标注了写作时间和当时的判断。对了还是错了，都留着。
+          这是我认为最诚实的投资学习方式。
+        </p>
+      </div>
     </div>
   );
 }

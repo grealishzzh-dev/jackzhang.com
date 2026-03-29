@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --accent: #c8a96e;
+  --accent-dim: rgba(200, 169, 110, 0.12);
+  --accent-border: rgba(200, 169, 110, 0.28);
+  --bg: #0f0f0f;
+  --bg-card: #161616;
+  --bg-hover: #1c1c1c;
+  --border: rgba(255, 255, 255, 0.07);
+  --text: #e4e4e4;
+  --text-muted: #888;
+  --text-faint: #4a4a4a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+* { box-sizing: border-box; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ── 研究文章正文排版 ── */
+.prose-research { color: var(--text); line-height: 1.8; }
+
+.prose-research h1 {
+  font-size: 1.75rem; font-weight: 700;
+  letter-spacing: -0.03em; color: var(--text); margin-bottom: 0.5rem;
+}
+.prose-research h2 {
+  font-size: 1.1rem; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--text);
+  margin-top: 2.5rem; margin-bottom: 1rem;
+  padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+}
+.prose-research h3 {
+  font-size: 1rem; font-weight: 600; color: var(--accent);
+  margin-top: 1.75rem; margin-bottom: 0.75rem;
+}
+.prose-research p { margin-bottom: 1.25rem; color: #bbb; }
+.prose-research blockquote {
+  border-left: 2px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 1.5rem 0; color: var(--text-muted);
+}
+.prose-research ul, .prose-research ol {
+  padding-left: 1.5rem; margin-bottom: 1.25rem; color: #bbb;
+}
+.prose-research li { margin-bottom: 0.4rem; }
+.prose-research strong { color: var(--text); font-weight: 600; }
+.prose-research a { color: var(--accent); text-decoration: none; }
+.prose-research a:hover { text-decoration: underline; }
+.prose-research table {
+  width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem;
+}
+.prose-research th {
+  text-align: left; padding: 0.6rem 1rem;
+  background: var(--bg-card); color: var(--text-muted);
+  font-weight: 500; font-size: 0.75rem;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.prose-research td {
+  padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); color: #bbb;
+}
+.prose-research tr:last-child td { border-bottom: none; }
+.prose-research code {
+  font-size: 0.85em; background: var(--bg-card);
+  padding: 0.15em 0.4em; border-radius: 4px; color: var(--accent);
+}
+.prose-research hr {
+  border: none; border-top: 1px solid var(--border); margin: 2rem 0;
+}
+.prose-research input[type="checkbox"] {
+  accent-color: var(--accent); margin-right: 0.4rem;
 }
