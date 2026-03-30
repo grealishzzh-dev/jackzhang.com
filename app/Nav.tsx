@@ -2,9 +2,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const links = [
+const primaryLinks = [
   { href: "/research", label: "研究" },
-  { href: "/about", label: "关于我" },
+];
+
+const secondaryLinks = [
+  { href: "/life", label: "生活" },
+  { href: "/football", label: "足球" },
+  { href: "/sport", label: "运动" },
 ];
 
 export default function Nav() {
@@ -32,16 +37,54 @@ export default function Nav() {
         }}>
           Jack Zhang
         </Link>
-        <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
-          {links.map(({ href, label }) => (
+
+        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+          {/* 主板块：研究，金色高亮 */}
+          {primaryLinks.map(({ href, label }) => (
             <Link key={href} href={href} className="nav-link" style={{
-              fontSize: "0.85rem",
-              color: pathname.startsWith(href) ? "var(--text)" : "var(--text-muted)",
+              fontSize: "0.88rem", fontWeight: 600,
+              color: pathname.startsWith(href) ? "var(--accent)" : "var(--accent)",
               textDecoration: "none", letterSpacing: "0.01em",
+              padding: "5px 12px", borderRadius: 8,
+              background: pathname.startsWith(href) ? "var(--accent-dim)" : "transparent",
+              transition: "background 0.15s",
             }}>
               {label}
             </Link>
           ))}
+
+          {/* 分隔线 */}
+          <div style={{
+            width: 1, height: 16,
+            background: "var(--border)", margin: "0 8px",
+          }} />
+
+          {/* 副板块：生活、足球、运动 */}
+          {secondaryLinks.map(({ href, label }) => (
+            <Link key={href} href={href} className="nav-link" style={{
+              fontSize: "0.83rem", fontWeight: 400,
+              color: pathname.startsWith(href) ? "var(--text)" : "var(--text-muted)",
+              textDecoration: "none", letterSpacing: "0.01em",
+              padding: "5px 10px",
+            }}>
+              {label}
+            </Link>
+          ))}
+
+          {/* 分隔线 */}
+          <div style={{
+            width: 1, height: 16,
+            background: "var(--border)", margin: "0 8px",
+          }} />
+
+          <Link href="/about" className="nav-link" style={{
+            fontSize: "0.83rem",
+            color: pathname.startsWith("/about") ? "var(--text)" : "var(--text-muted)",
+            textDecoration: "none", letterSpacing: "0.01em",
+            padding: "5px 10px",
+          }}>
+            关于我
+          </Link>
         </div>
       </div>
     </nav>

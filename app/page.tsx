@@ -49,7 +49,7 @@ export default function HomePage() {
 
       {/* 最新研究 */}
       {posts.length > 0 && (
-        <div>
+        <div style={{ marginBottom: 80 }}>
           <div style={{
             fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em",
             textTransform: "uppercase", color: "var(--text-faint)", marginBottom: 20,
@@ -91,7 +91,7 @@ export default function HomePage() {
 
       {/* 方法论 */}
       <div style={{
-        marginTop: 80, padding: "28px 32px", borderRadius: 14,
+        marginBottom: 80, padding: "28px 32px", borderRadius: 14,
         border: "1px solid var(--accent-border)", background: "var(--accent-dim)",
       }}>
         <p style={{
@@ -105,6 +105,50 @@ export default function HomePage() {
           这是我认为最诚实的投资学习方式。
         </p>
       </div>
+
+      {/* 副板块 */}
+      <div>
+        <div style={{
+          fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em",
+          textTransform: "uppercase", color: "var(--text-faint)", marginBottom: 20,
+        }}>
+          其他
+        </div>
+        <div style={{
+          display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12,
+        }}>
+          {[
+            { href: "/life", label: "生活", desc: "感悟与日志" },
+            { href: "/football", label: "足球", desc: "我的足球生涯" },
+            { href: "/sport", label: "运动", desc: "健身 · 滑雪 · 高尔夫 · 徒步" },
+          ].map(({ href, label, desc }) => (
+            <Link key={href} href={href} style={{
+              display: "flex", flexDirection: "column", gap: 6,
+              padding: "18px 20px", borderRadius: 12,
+              border: "1px solid var(--border)",
+              background: "var(--bg-card)",
+              textDecoration: "none",
+              transition: "border-color 0.15s",
+            }}>
+              <div style={{
+                fontSize: "0.92rem", fontWeight: 500,
+                color: "var(--text)", letterSpacing: "-0.01em",
+              }}>
+                {label}
+              </div>
+              <div style={{ fontSize: "0.78rem", color: "var(--text-faint)" }}>
+                {desc}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .side-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }
