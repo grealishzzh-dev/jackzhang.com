@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/research", label: "研究" },
-  { href: "/about", label: "关于" },
+  { href: "/about", label: "关于我" },
 ];
 
 export default function Nav() {
