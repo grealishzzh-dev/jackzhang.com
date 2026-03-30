@@ -6,7 +6,7 @@ export const metadata = { title: "运动 · Jack Zhang" };
 export default function SportPage() {
   const entries = getAllEntries("sport");
   return (
-    <div style={{ maxWidth: 720, margin: "0 auto", padding: "56px 32px 96px" }}>
+    <div style={{ maxWidth: 900, margin: "0 auto", padding: "56px 32px 96px" }}>
       <div style={{ marginBottom: 48 }}>
         <p style={{
           fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.1em",
