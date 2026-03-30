@@ -44,6 +44,33 @@ export default function HomePage() {
           }}>
             关于我
           </Link>
+          <Link href="/life" style={{
+            display: "inline-flex", alignItems: "center",
+            padding: "9px 22px", borderRadius: 10,
+            border: "1px solid var(--border)",
+            color: "var(--text-muted)", fontWeight: 500,
+            fontSize: "0.88rem", textDecoration: "none",
+          }}>
+            生活
+          </Link>
+          <Link href="/football" style={{
+            display: "inline-flex", alignItems: "center",
+            padding: "9px 22px", borderRadius: 10,
+            border: "1px solid var(--border)",
+            color: "var(--text-muted)", fontWeight: 500,
+            fontSize: "0.88rem", textDecoration: "none",
+          }}>
+            足球
+          </Link>
+          <Link href="/sport" style={{
+            display: "inline-flex", alignItems: "center",
+            padding: "9px 22px", borderRadius: 10,
+            border: "1px solid var(--border)",
+            color: "var(--text-muted)", fontWeight: 500,
+            fontSize: "0.88rem", textDecoration: "none",
+          }}>
+            运动
+          </Link>
         </div>
       </div>
 
